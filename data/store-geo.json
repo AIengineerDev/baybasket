@@ -1,0 +1,105 @@
+{
+  "target:322": {
+    "lat": 37.401165,
+    "lon": -122.106321,
+    "source": "https://www.target.com/sl/mountain-view-target-store/322"
+  },
+  "mercato:1323": {
+    "lat": 28.183344982636,
+    "lon": -82.353764752949,
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=1821+Bruce+B+Downs+Blvd+Wesley+Chapel+FL+33544&benchmark=Public_AR_Current&format=json",
+    "matchedAddress": "1821 BRUCE B DOWNS BLVD, WESLEY CHAPEL, FL, 33544"
+  },
+  "mercato:2701": {
+    "lat": 28.080478316452,
+    "lon": -82.43173732847,
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=2540+East+Bearss+Ave+Tampa+FL+33613&benchmark=Public_AR_Current&format=json",
+    "matchedAddress": "2540 E BEARSS AVE, TAMPA, FL, 33613"
+  },
+  "mercato:2864": {
+    "lat": 37.769109001453,
+    "lon": -122.427134463127,
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=2020+Market+St+San+Francisco+CA+94114&benchmark=Public_AR_Current&format=json",
+    "matchedAddress": "2020 MARKET ST, SAN FRANCISCO, CA, 94114"
+  },
+  "target:2289": {
+    "lat": 28.014957789273,
+    "lon": -82.615162616743,
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=11627+W+Hillsborough+Ave%2C+Tampa%2C+FL+33635&benchmark=Public_AR_Current&format=json",
+    "matchedAddress": "11627 W HILLSBOROUGH AVE, TAMPA, FL, 33635"
+  },
+  "target:656": {
+    "lat": 28.071831074889,
+    "lon": -82.427177960383,
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=13658+University+Plaza+St%2C+Tampa%2C+FL+33613&benchmark=Public_AR_Current&format=json",
+    "matchedAddress": "13658 UNIVERSITY PLZ, TAMPA, FL, 33613"
+  },
+  "target:1820": {
+    "lat": 27.960519009204,
+    "lon": -82.723842026386,
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=2747+Gulf+To+Bay+Blvd%2C+Clearwater%2C+FL+33759&benchmark=Public_AR_Current&format=json",
+    "matchedAddress": "2747 GULF TO BAY BLVD, CLEARWATER, FL, 33759"
+  },
+  "target:812": {
+    "lat": 27.937851856499,
+    "lon": -82.32464531939,
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=187+Brandon+Town+Center+Dr%2C+Brandon%2C+FL+33511&benchmark=Public_AR_Current&format=json",
+    "matchedAddress": "187 BRANDON TOWN CENTER DR, BRANDON, FL, 33511"
+  },
+  "target:1984": {
+    "lat": 37.340812375516,
+    "lon": -121.841652133206,
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=1750+Story+Rd%2C+San+Jose%2C+CA+95122&benchmark=Public_AR_Current&format=json",
+    "matchedAddress": "1750 STORY RD, SAN JOSE, CA, 95122"
+  },
+  "target:2830": {
+    "lat": 37.352218708629,
+    "lon": -121.960629927568,
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=2004+El+Camino+Real%2C+Santa+Clara%2C+CA+95050&benchmark=Public_AR_Current&format=json",
+    "matchedAddress": "2004 EL CAMINO REAL, SANTA CLARA, CA, 95050"
+  },
+  "target:2584": {
+    "lat": 37.374553033506,
+    "lon": -122.032747586849,
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=298+W+McKinley+Ave%2C+Sunnyvale%2C+CA+94086&benchmark=Public_AR_Current&format=json",
+    "matchedAddress": "298 W MC KINLEY AVE, SUNNYVALE, CA, 94086"
+  },
+  "target:2768": {
+    "lat": 37.782196459805,
+    "lon": -122.446990451251,
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=2675+Geary+Blvd%2C+San+Francisco%2C+CA+94118&benchmark=Public_AR_Current&format=json",
+    "matchedAddress": "2675 GEARY BLVD, SAN FRANCISCO, CA, 94118"
+  },
+  "target:2766": {
+    "lat": 37.784629846393,
+    "lon": -122.403973212242,
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=789+Mission+St%2C+San+Francisco%2C+CA+94103&benchmark=Public_AR_Current&format=json",
+    "matchedAddress": "789 MISSION ST, SAN FRANCISCO, CA, 94103"
+  },
+  "target:3264": {
+    "lat": 37.726861220328,
+    "lon": -122.477255956107,
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=285+Winston+Dr%2C+San+Francisco%2C+CA+94132&benchmark=Public_AR_Current&format=json",
+    "matchedAddress": "285 WINSTON DR, SAN FRANCISCO, CA, 94132"
+  },
+  "target:1382": {
+    "lat": 28.172833,
+    "lon": -82.35557,
+    "source": "https://www.target.com/sl/new-tampa-supertarget-store/1382"
+  },
+  "target:1131": {
+    "lat": 27.846105,
+    "lon": -82.644125,
+    "source": "https://www.target.com/sl/st-petersburg-gateway/1131"
+  },
+  "target:323": {
+    "lat": 37.323944,
+    "lon": -122.036425,
+    "source": "https://www.target.com/sl/cupertino-de-anza-blvd/323"
+  },
+  "target:321": {
+    "lat": 37.475146,
+    "lon": -122.217683,
+    "source": "https://www.target.com/sl/redwood-city/321"
+  }
+}
