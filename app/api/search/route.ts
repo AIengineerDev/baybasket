@@ -1,6 +1,6 @@
 import {buildIndex,search} from '../../../lib/search.mjs';
 import {demoProducts,liveProducts,stores,liveStores} from '../../../lib/catalog';
-import {pricedCatalog,rankPricedProducts} from '../../../lib/pricing.mjs';
+import {priceClock,pricedCatalog,rankPricedProducts} from '../../../lib/pricing.mjs';
 import {nearestPerChain,DEFAULT_RADIUS} from '../../../lib/nearby.mjs';
 import {resolveLocation} from '../../../lib/place-resolver';
 const demo=buildIndex(demoProducts),live=buildIndex(liveProducts);
@@ -17,9 +17,10 @@ export async function GET(request:Request){
  const storeIds=selectedStores.map((s:{id:string})=>s.id);
  const limit=Math.min(120,Math.max(1,Number(u.searchParams.get('limit'))||30));
  const comparisonsOnly=u.searchParams.get('comparisons')==='true';
- const priced=pricedCatalog(search(mode==='demo'?demo:live,q,category,5000,{storeId:store,storeIds}),storeIds);
+ const clock=mode==='demo'?{at:Date.now(),stale:false,asOf:null}:priceClock(liveProducts);
+ const priced=pricedCatalog(search(mode==='demo'?demo:live,q,category,5000,{storeId:store,storeIds}),storeIds,clock.at);
  const matches=rankPricedProducts(priced,{storeId:store,comparisonsOnly});
  const products=matches.slice(0,limit);
- return Response.json({products,totalMatches:matches.length,comparableMatches:priced.filter(p=>p.offers.length>=2).length,comparisonsOnly,mode,location,radiusMiles:radius,selectionPolicy:'nearest-collected-branch-per-chain',pricePolicy:'in-stock-fixed-price-observed-within-24-hours',stores:storeIds,selectedStores,serverMs:Math.round((performance.now()-start)*100)/100},
+ return Response.json({products,totalMatches:matches.length,comparableMatches:priced.filter(p=>p.offers.length>=2).length,comparisonsOnly,mode,location,radiusMiles:radius,selectionPolicy:'nearest-collected-branch-per-chain',pricePolicy:'in-stock-fixed-price-observed-within-24-hours',stalePrices:clock.stale,pricesAsOf:clock.asOf,stores:storeIds,selectedStores,serverMs:Math.round((performance.now()-start)*100)/100},
  {headers:{'Cache-Control':'private, max-age=30','Server-Timing':`search;dur=${(performance.now()-start).toFixed(2)}`}});
 }

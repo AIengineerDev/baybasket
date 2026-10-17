@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
-import {isUsableOffer,pricedCatalog,quoteRows,rankPricedProducts,PRICE_TTL_MS} from '../lib/pricing.mjs';
+import {isUsableOffer,priceClock,pricedCatalog,quoteRows,rankPricedProducts,PRICE_TTL_MS} from '../lib/pricing.mjs';
 import {basketTotals} from '../lib/search.mjs';
 
 const now=Date.parse('2026-10-15T16:00:00Z');
@@ -31,10 +31,25 @@ const duplicate={...shared,offers:[quote('bravo',679),quote('bravo',700,{observe
 assert.equal(pricedCatalog([duplicate],['bravo'],now)[0].offers.length,1);
 assert.equal(rankPricedProducts(pricedCatalog([duplicate],['bravo'],now),{comparisonsOnly:true}).length,0,'Duplicate offers cannot become a two-grocer comparison');
 
+// A fresh snapshot is judged at now; an expired one is judged as of its newest observation and flagged.
+const fresh=[{...butter,offers:[quote('nutrition',370)]}];
+assert.deepEqual(priceClock(fresh,now),{at:now,stale:false,asOf:null});
+const later=now+PRICE_TTL_MS+60_000,newestAt=now-1000;
+const old=[{...butter,offers:[quote('nutrition',370),quote('bravo',360,{observedAt:new Date(now-5000).toISOString()})]}];
+assert.deepEqual(priceClock(old,later),{at:newestAt,stale:true,asOf:new Date(newestAt).toISOString()});
+assert.equal(pricedCatalog(old,['nutrition','bravo'],later).length,0,'At the wall clock an expired snapshot prices nothing');
+assert.equal(pricedCatalog(old,['nutrition','bravo'],priceClock(old,later).at)[0].offers.length,2,'As of its own time the snapshot shows both prices');
+assert.deepEqual(priceClock(old,now+PRICE_TTL_MS-2000).stale,false,'One minute fresh is still fresh');
+const withFuture=[{...butter,offers:[quote('nutrition',370),quote('bravo',360,{observedAt:new Date(later+1).toISOString()})]}];
+assert.equal(priceClock(withFuture,later).at,newestAt,'A future-dated offer cannot make an expired snapshot look fresh');
+assert.deepEqual(priceClock([],later),{at:later,stale:false,asOf:null},'No observations: nothing to fall back to');
+const stillInvalid=[{...butter,offers:[quote('nutrition',370,{available:false})]}];
+assert.equal(pricedCatalog(stillInvalid,['nutrition'],priceClock(stillInvalid,later).at).length,0,'The fallback relaxes only the clock, not availability or price checks');
+
 const live=JSON.parse(readFileSync('data/live.json','utf8'));
 const screenshotProduct=live.products.find(p=>p.id==='mercato:1095');
 assert(screenshotProduct,'Keep the real product from the user screenshot');
-const screenshotRows=quoteRows(screenshotProduct,live.stores.filter(s=>['target:656','mercato:1323','mercato:2701'].includes(s.id)),Date.now());
+const screenshotRows=quoteRows(screenshotProduct,live.stores.filter(s=>['target:656','mercato:1323','mercato:2701'].includes(s.id)),priceClock(live.products).at);
 assert.equal(screenshotRows.length,2,'The screenshot product now has real quotes at Nutrition Smart and Bravo');
 assert(screenshotRows.every(r=>Number.isSafeInteger(r.offer.cents)&&r.offer.cents>0));
 console.log(JSON.stringify({priceEligibility:'passed',emptyQuoteRows:'excluded',singlePriceLabels:'supported',comparisonFilter:'passed',storeFilterKeepsCompetingQuotes:'passed',basketTotals:'passed',realScreenshotQuotes:screenshotRows.map(r=>({store:r.store.name,cents:r.offer.cents}))}));

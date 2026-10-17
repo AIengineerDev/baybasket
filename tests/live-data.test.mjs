@@ -1,6 +1,7 @@
 import {readFileSync,existsSync} from 'node:fs';
 import assert from 'node:assert/strict';
 import {buildIndex,search,basketTotals} from '../lib/search.mjs';
+import {priceClock} from '../lib/pricing.mjs';
 const data=JSON.parse(readFileSync('data/live.json','utf8'));
 const ids=new Set(data.stores.map(s=>s.id));let offers=0,localImages=0;
 assert(data.products.length>0,'Live catalog must not be empty');
@@ -20,7 +21,7 @@ const index=buildIndex(data.products);
 const strawberries=search(index,'strawberries');assert(strawberries.length>0);
 const chosen=strawberries.find(p=>p.offers.filter(o=>o.available).length>1);assert(chosen,'Need multi-store comparison data');
 const available=chosen.offers.find(o=>o.available&&!o.estimated);assert(available);
-const total=basketTotals(data.products,{[chosen.id]:2},data.stores).find(s=>s.id===available.storeId);
+const total=basketTotals(data.products,{[chosen.id]:2},data.stores,priceClock(data.products).at).find(s=>s.id===available.storeId);
 assert.equal(total.cents,available.cents*2);assert(total.complete);
 assert.equal(search(index,'strawberries','All',30,{storeId:'not-connected'}).length,0);
 console.log(JSON.stringify({verifiedProducts:data.products.length,verifiedOffers:offers,stores:ids.size,localImages,exactItemComparison:'passed'}));
