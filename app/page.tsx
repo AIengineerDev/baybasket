@@ -9,5 +9,5 @@ export default async function Page({searchParams}:{searchParams:Promise<Record<s
  const near=typeof params.near==='string'?params.near:typeof params.city==='string'?params.city:params.region==='silicon-valley'?'San Jose':params.region==='san-francisco'?'San Francisco':'Tampa';
  const location=await resolveLocation(near);
  const radius=[5,10,20,30].includes(Number(params.radius))?Number(params.radius):DEFAULT_RADIUS;
- return <GroceryApp initialLocation={location||places.cities.tampa} initialRadius={radius} initialNow={Date.now()} initialBasket={parseBasket(params.basket,liveProducts)} initialError={location?'':'That location could not be resolved. Showing Tampa; enter a supported ZIP code or city.'}/>;
+ return <GroceryApp initialLocation={location||places.cities.tampa} initialRadius={radius} initialNow={Date.now()} initialBasket={parseBasket(params.basket,liveProducts)} initialView={params.view==='basket'?'basket':'explore'} initialError={location?'':'That location could not be resolved. Showing Tampa; enter a supported ZIP code or city.'}/>;
 }
