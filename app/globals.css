@@ -36,3 +36,19 @@ header{gap:30px}.location-picker{margin-left:auto;display:flex;align-items:cente
 .product-image{overflow:hidden}.product-image>.retail-photo{position:absolute;inset:0;width:100%;height:100%;min-height:0;min-width:0;object-fit:contain}.retail-photo{max-width:100%;max-height:100%}
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 @media(max-width:720px){.basket-matrix{grid-column:1;order:0}.basket-sidebar{order:1}.workspace>.catalog{order:2}.matrix-heading{padding:18px 15px;gap:10px;align-items:flex-start}.matrix-heading h2{font-size:18px}.matrix-heading p{font-size:10px}.matrix-heading .eyebrow{font-size:8px}.matrix-export{font-size:10px;padding:8px}.matrix-scroll th,.matrix-scroll td{padding:13px 15px}.matrix-scroll th:first-child{width:210px;position:sticky;left:0;z-index:1;background:#fff}.matrix-scroll thead th:first-child{background:#fafbf7}.matrix-scroll .full-basket-row th:first-child{background:#f5f8ef}.matrix-scroll .shared-basket-row th:first-child{background:#fffaf0}.matrix-scroll thead th{font-size:12px}.matrix-product{gap:9px}.matrix-product>.thumb{width:29px;height:38px}.matrix-product strong{font-size:11px}.matrix-scroll tbody td>strong{font-size:17px}.full-basket-row td>strong{font-size:22px}.shared-explanation{padding:15px}.matrix-coverage,.matrix-note{margin:12px 15px}.basket-sidebar .basket-items{max-height:220px}}
+
+/* Browser-local named shopping lists. */
+.saved-lists{padding:18px 0;border-bottom:1px solid #deded5;margin-bottom:16px}
+.saved-lists h3{font-size:17px;margin:0 0 8px}
+.saved-lists p{font-size:13px;line-height:1.5;margin:8px 0}
+.saved-lists form{display:grid;gap:8px;margin:12px 0}
+.saved-lists label{font-size:13px;font-weight:600}
+.saved-lists input{width:100%;min-width:0;padding:10px;border:1px solid #92998b;border-radius:8px;background:white;color:#243324}
+.saved-list-actions{display:flex;flex-wrap:wrap;gap:8px}
+.saved-list-actions button{padding:8px 10px;border:1px solid #92998b;border-radius:8px;background:white;color:#243324;font-size:13px;cursor:pointer}
+.saved-list-actions button:disabled{opacity:.5;cursor:not-allowed}
+.saved-lists :focus-visible{outline:3px solid #39713c;outline-offset:3px}
+.saved-lists ul{list-style:none;padding:0;margin:0}
+.saved-lists li{display:grid;gap:8px;padding:12px 0;border-top:1px solid #deded5;overflow-wrap:anywhere}
+.saved-lists li>span{font-size:12px}
+.saved-lists [role=alert]{color:#9e2525}
